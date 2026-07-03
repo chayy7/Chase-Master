@@ -1,0 +1,22 @@
+# ChaseMaster MVP Tasks
+
+- `[x]` **1. Project Initialization**
+  - `[x]` Initialize Next.js 14 project
+  - `[/]` Configure `shadcn-ui`
+  - `[/]` Install `framer-motion`, `lucide-react`, `next-themes`
+- `[x]` **2. Design System & Theme**
+  - `[x]` Configure Tailwind colors and glassmorphism utilities
+  - `[x]` Set up global fonts (Outfit/Inter)
+- `[x]` **3. Core Components**
+  - `[x]` Navbar
+  - `[x]` Footer
+  - `[x]` Sidebar (Dashboard)
+  - `[x]` JobCard
+- `[x]` **4. Pages**
+  - `[x]` `/` (Interactive Landing Page)
+  - `[x]` `/login` & `/signup`
+  - `[x]` `/dashboard`
+  - `[x]` `/jobs`
+- `[x]` **5. Verification**
+  - `[x]` Check animations and responsiveness
+  - `[x]` Verify mock data rendering
