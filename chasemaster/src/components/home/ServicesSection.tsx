@@ -2,14 +2,15 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { FileCheck, FolderOpen, Handshake, Users, Presentation, Target } from "lucide-react";
+import { FileCheck, FolderOpen, Smartphone, Globe, Video, Target } from "lucide-react";
 
 const services = [
   {
     id: 1,
-    title: "ATS Resume Making",
-    description: "Get a professional, ATS-friendly resume designed to pass screening software and catch recruiters' attention.",
-    price: "1499",
+    title: "Resume & LinkedIn Optimization",
+    description: "Get a professional, ATS-friendly resume and a perfectly optimized LinkedIn profile to catch recruiters' attention.",
+    price: "₹799",
+    oldPrice: "₹1999",
     icon: FileCheck,
     color: "text-blue-500",
     bg: "bg-blue-500/10",
@@ -18,43 +19,44 @@ const services = [
     id: 2,
     title: "Portfolio Building",
     description: "Showcase your work effectively with a stunning portfolio that highlights your skills and past projects.",
-    price: "1999",
+    price: "₹1299",
+    oldPrice: "₹2499",
     icon: FolderOpen,
     color: "text-purple-500",
     bg: "bg-purple-500/10",
   },
   {
     id: 3,
-    title: "Placement Assistance",
-    description: "End-to-end guidance for securing your dream job, from application strategy to salary negotiation.",
-    price: "1999",
-    icon: Handshake,
+    title: "App Development",
+    description: "Custom mobile application development tailored to your needs with cutting-edge technologies.",
+    price: "Custom Pricing",
+    icon: Smartphone,
     color: "text-green-500",
     bg: "bg-green-500/10",
   },
   {
     id: 4,
-    title: "Mock Interviews",
-    description: "Practice with industry experts, get detailed feedback, and build confidence for your actual interviews.",
-    price: "1499",
-    icon: Users,
+    title: "Website Building",
+    description: "Professional, responsive, and SEO-optimized website development to establish your online presence.",
+    price: "Custom Pricing",
+    icon: Globe,
     color: "text-orange-500",
     bg: "bg-orange-500/10",
   },
   {
     id: 5,
-    title: "Domain Meets",
-    description: "Join exclusive webinars and networking sessions focused on specific tech domains and industries.",
-    price: "1499",
-    icon: Presentation,
+    title: "Online Classes",
+    description: "Interactive online learning sessions designed to help you master new skills and industry trends.",
+    price: "Custom Pricing",
+    icon: Video,
     color: "text-rose-500",
     bg: "bg-rose-500/10",
   },
   {
     id: 6,
-    title: "Career Guidance",
-    description: "Personalized mentorship to help you navigate your career path and make informed professional decisions.",
-    price: "1999",
+    title: "Exam & Interview Guidance",
+    description: "Comprehensive assistance for company-specific exams and interviews to help you secure your dream job.",
+    price: "₹1k - ₹5k",
     icon: Target,
     color: "text-primary",
     bg: "bg-primary/10",
@@ -109,8 +111,15 @@ export function ServicesSection() {
                   <Icon className={`w-7 h-7 ${service.color}`} />
                 </div>
 
-                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 px-3 py-1 bg-background/80 backdrop-blur-md rounded-full border border-border/50 text-xs sm:text-sm font-semibold text-foreground shadow-sm">
-                  ₹{service.price}
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2">
+                  {service.oldPrice && (
+                    <span className="text-xs sm:text-sm font-medium text-muted-foreground line-through decoration-destructive/70">
+                      {service.oldPrice}
+                    </span>
+                  )}
+                  <div className="px-3 py-1 bg-background/80 backdrop-blur-md rounded-full border border-border/50 text-xs sm:text-sm font-semibold text-foreground shadow-sm">
+                    {service.price}
+                  </div>
                 </div>
                 
                 <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors pr-16 sm:pr-20">
