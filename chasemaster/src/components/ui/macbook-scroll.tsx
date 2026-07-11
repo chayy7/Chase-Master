@@ -46,6 +46,7 @@ export const MacbookScroll = ({
 
   useEffect(() => {
     if (window && window.innerWidth < 768) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMobile(true);
     }
   }, []);

@@ -10,6 +10,7 @@ export const SilkBackground = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -86,8 +87,8 @@ export const SilkBackground = () => {
           const v = (y / height) * scale;
           
           const tOffset = speed * time;
-          let tex_x = u;
-          let tex_y = v + 0.03 * Math.sin(8.0 * tex_x - tOffset);
+          const tex_x = u;
+          const tex_y = v + 0.03 * Math.sin(8.0 * tex_x - tOffset);
 
           const pattern = 0.6 + 0.4 * Math.sin(
             5.0 * (tex_x + tex_y + 
