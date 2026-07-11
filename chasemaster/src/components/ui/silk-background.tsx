@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 
 export const SilkBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
