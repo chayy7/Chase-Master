@@ -1,86 +1,168 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { motion, useInView } from "framer-motion";
-import { Quote } from "lucide-react";
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
-const stories = [
+const testimonials = [
   {
     id: 1,
-    name: "Rahul Sharma",
-    role: "SDE-1 at Amazon",
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    content: "ChaseMaster's roadmaps and interview prep resources helped me crack Amazon. The ATS resume builder is a game changer!",
+    quote: "This changed everything for me.",
+    author: "Sarah Chen",
+    role: "Designer at Figma",
+    avatar: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
-    name: "Priya Patel",
-    role: "Product Designer at Zomato",
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    content: "Found my dream internship through the platform. The UI is gorgeous and the community is super helpful.",
+    quote: "Simply brilliant. Nothing else compares.",
+    author: "Marcus Johnson",
+    role: "Engineer at Vercel",
+    avatar: "https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
-    name: "Amit Kumar",
-    role: "Frontend Engineer at Razorpay",
-    image: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-    content: "The curated resources saved me hundreds of hours. I didn't need to look anywhere else for my React journey.",
+    quote: "The attention to detail is unmatched.",
+    author: "Elena Rodriguez",
+    role: "Founder at Craft",
+    avatar: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
-];
+  {
+    id: 4,
+    quote: "I've never seen anything quite like this before.",
+    author: "David Smith",
+    role: "Product Manager at Stripe",
+    avatar: "https://i.pravatar.cc/150?u=dsmith",
+  },
+  {
+    id: 5,
+    quote: "It streamlined our entire workflow instantly.",
+    author: "Anita Desai",
+    role: "CTO at TechNova",
+    avatar: "https://i.pravatar.cc/150?u=adesai",
+  },
+  {
+    id: 6,
+    quote: "A beautifully crafted tool that feels magical.",
+    author: "James Wilson",
+    role: "Lead Developer at OpenAI",
+    avatar: "https://i.pravatar.cc/150?u=jwilson",
+  },
+  {
+    id: 7,
+    quote: "Absolutely essential for our daily operations.",
+    author: "Maria Garcia",
+    role: "Operations Head at Shopify",
+    avatar: "https://i.pravatar.cc/150?u=mgarcia",
+  }
+]
 
 export function SuccessStories() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [displayedQuote, setDisplayedQuote] = useState(testimonials[0].quote)
+  const [displayedRole, setDisplayedRole] = useState(testimonials[0].role)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  const handleSelect = (index: number) => {
+    if (index === activeIndex || isAnimating) return
+    setIsAnimating(true)
+
+    setTimeout(() => {
+      setDisplayedQuote(testimonials[index].quote)
+      setDisplayedRole(testimonials[index].role)
+      setActiveIndex(index)
+      setTimeout(() => setIsAnimating(false), 400)
+    }, 200)
+  }
 
   return (
-    <section className="py-24 bg-muted/20 relative z-10" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
-            Success <span className="text-primary">Stories</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hear from students and professionals who accelerated their careers with ChaseMaster.
-          </p>
-        </motion.div>
+    <div className="flex flex-col items-center gap-10 py-32 bg-muted/20">
+      {/* Quote Container */}
+      <div className="relative px-8">
+        <span className="absolute -left-2 -top-6 text-7xl font-serif text-foreground/[0.06] select-none pointer-events-none">
+          "
+        </span>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stories.map((story, index) => (
-            <motion.div
-              key={story.id}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              transition={{ duration: 0.5, delay: index * 0.1, type: "spring", bounce: 0.3 }}
-              className="glass-card rounded-2xl p-8 relative shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/10" />
-              
-              <div className="flex items-center gap-4 mb-6">
-                <img
-                  src={story.image}
-                  alt={story.name}
-                  className="w-14 h-14 rounded-full border-2 border-primary/20 object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-foreground">{story.name}</h4>
-                  <p className="text-sm text-primary">{story.role}</p>
+        <p
+          className={cn(
+            "text-2xl md:text-3xl font-light text-foreground text-center max-w-lg leading-relaxed transition-all duration-400 ease-out",
+            isAnimating ? "opacity-0 blur-sm scale-[0.98]" : "opacity-100 blur-0 scale-100",
+          )}
+        >
+          {displayedQuote}
+        </p>
+
+        <span className="absolute -right-2 -bottom-8 text-7xl font-serif text-foreground/[0.06] select-none pointer-events-none">
+          "
+        </span>
+      </div>
+
+      <div className="flex flex-col items-center gap-6 mt-2">
+        {/* Role text */}
+        <p
+          className={cn(
+            "text-xs text-muted-foreground tracking-[0.2em] uppercase transition-all duration-500 ease-out text-center",
+            isAnimating ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0",
+          )}
+        >
+          {displayedRole}
+        </p>
+
+        <div className="flex items-center justify-center gap-2 flex-wrap max-w-2xl">
+          {testimonials.map((testimonial, index) => {
+            const isActive = activeIndex === index
+            const isHovered = hoveredIndex === index && !isActive
+            const showName = isActive || isHovered
+
+            return (
+              <button
+                key={testimonial.id}
+                onClick={() => handleSelect(index)}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={cn(
+                  "relative flex items-center gap-0 rounded-full cursor-pointer",
+                  "transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  isActive ? "bg-foreground shadow-lg" : "bg-transparent hover:bg-muted/80",
+                  showName ? "pr-4 pl-2 py-2" : "p-0.5",
+                )}
+              >
+                {/* Avatar with smooth ring animation */}
+                <div className="relative flex-shrink-0">
+                  <img
+                    src={testimonial.avatar || "/placeholder.svg"}
+                    alt={testimonial.author}
+                    className={cn(
+                      "w-8 h-8 rounded-full object-cover",
+                      "transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                      isActive ? "ring-2 ring-background/30" : "ring-0",
+                      !isActive && "hover:scale-105",
+                    )}
+                  />
                 </div>
-              </div>
-              
-              <p className="text-muted-foreground leading-relaxed italic">
-                "{story.content}"
-              </p>
-            </motion.div>
-          ))}
+
+                <div
+                  className={cn(
+                    "grid transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                    showName ? "grid-cols-[1fr] opacity-100 ml-2" : "grid-cols-[0fr] opacity-0 ml-0",
+                  )}
+                >
+                  <div className="overflow-hidden">
+                    <span
+                      className={cn(
+                        "text-sm font-medium whitespace-nowrap block",
+                        "transition-colors duration-300",
+                        isActive ? "text-background" : "text-foreground",
+                      )}
+                    >
+                      {testimonial.author}
+                    </span>
+                  </div>
+                </div>
+              </button>
+            )
+          })}
         </div>
       </div>
-    </section>
-  );
+    </div>
+  )
 }

@@ -12,7 +12,7 @@ export function MacbookSection() {
             Experience the <span className="text-primary">Super App</span>. <br /> Everything in one place.
           </span>
         }
-        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
+        src="/solutions.png"
         showGradient={true}
       />
     </div>
