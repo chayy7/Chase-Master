@@ -73,9 +73,9 @@ export function StatsSection() {
                 key={stat.id}
                 className="flex shrink-0 items-center gap-16 md:gap-32"
               >
-                <div className="flex flex-col items-start justify-center p-12 md:p-16 rounded-[2.5rem] bg-white dark:bg-[#0A0A0A] border border-border dark:border-white/10 shadow-xl dark:shadow-2xl relative w-[320px] md:w-[480px] hover:border-primary/50 dark:hover:border-white/20 hover:shadow-2xl dark:hover:bg-[#111] transition-all duration-500">
-                  <div className={`mb-10 ${stat.color} bg-primary/5 dark:bg-white/5 p-5 md:p-6 rounded-3xl w-fit`}>
-                    <Icon className="w-12 h-12 md:w-16 md:h-16" strokeWidth={1.5} />
+                <div className="group flex flex-col items-start justify-center p-12 md:p-16 rounded-[2.5rem] bg-white dark:bg-[#0A0A0A] border border-border dark:border-white/5 shadow-xl relative w-[320px] md:w-[480px] hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_40px_80px_-20px_rgba(255,255,255,0.03)] dark:hover:bg-[#0c0c0c] transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer">
+                  <div className={`mb-10 ${stat.color} bg-primary/5 dark:bg-white/5 p-5 md:p-6 rounded-3xl w-fit transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-primary/10 dark:group-hover:bg-white/10 group-hover:scale-105`}>
+                    <Icon className="w-12 h-12 md:w-16 md:h-16 transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1" strokeWidth={1.5} />
                   </div>
                   <h4 className="text-6xl md:text-[6rem] font-bold text-foreground dark:text-white mb-6 tracking-tighter leading-none">
                     {stat.value}
